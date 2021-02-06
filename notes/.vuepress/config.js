@@ -2,7 +2,7 @@ module.exports = {
   title: "my-note",
   description: "个人笔记",
   dest: "public",
-  base: "/notes/public/",
+  base: "/blog/",
   head: [
     [
       "link",
