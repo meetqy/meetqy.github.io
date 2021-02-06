@@ -1,12 +1,14 @@
 {
-  "name": "mynote",
+  "name": "my-note",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "author": "reco_luan",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vuepress dev ./notes --open --host \"localhost\"",
+    "build": "vuepress build ./notes"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "vuepress": "1.7.1",
+    "vuepress-theme-reco": "1.6.1"
+  },
+  "description": "个人笔记"
 }

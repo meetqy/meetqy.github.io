@@ -1,7 +1,6 @@
 module.exports = {
   title: "my-note",
   description: "个人笔记",
-  dest: "/blog/",
   head: [
     [
       "link",
