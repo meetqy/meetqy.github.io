@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Observer {
+        constructor(data) {
+          // 遍历参数data的属性,给添加到this上
+          for (let key of Object.keys(data)) {
+            if (typeof data[key] === "object") {
+              data[key] = new Observer(data[key]);
+            }
+            Object.defineProperty(this, key, {
+              enumerable: true, // 是否可以被枚举
+              configurable: true, // 是否可以删除目标属性
+              //   writable: true, // 属性的值是否可以被重写
+              get() {
+                console.log("get", key, data[key]);
+                return data[key]; // 中括号法可以用变量作为属性名,而点方法不可以;
+              },
+              set(newVal) {
+                console.log("set", key, newVal);
+                if (newVal === data[key]) {
+                  return;
+                }
+                data[key] = newVal;
+              }
+            });
+          }
+        }
+      }
+
+      const obj = {
+        name: "app",
+        age: 18,
+        a: {
+          a: 1,
+          b: 2
+        }
+      };
+
+      let app = new Observer(obj);
+
+      // get set 监听到
+      app.name = "123";
+      console.log(app.name);
+
+      // set 监听不到
+      app.custom = "custom";
+      console.log(app.custom);
+
+      app.a.b = "ab";
+      console.log(app.a.b);
+
+      console.log(app);
+    </script>
+  </body>
+</html>

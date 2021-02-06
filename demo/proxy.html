@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Observe {
+        constructor(obj) {
+          return new Proxy(obj, {
+            get(target, propKey, receiver) {
+              console.log("get", propKey, receiver);
+              return Reflect.get(target, propKey, receiver);
+            },
+            set(target, propKey, value, receiver) {
+              console.log("set", propKey, value);
+              Reflect.set(target, propKey, value, receiver);
+            }
+          });
+        }
+      }
+
+      const obj = {
+        name: "app",
+        age: 18,
+        a: {
+          a: 1,
+          b: 2
+        }
+      };
+
+      const ob = new Observe(obj);
+
+      ob.age = "20";
+      console.log(ob.age);
+
+      ob.custom = "custom";
+      console.log(ob.custom);
+
+      ob.a.b = "ab";
+      console.log(ob.a.b);
+    </script>
+  </body>
+</html>
