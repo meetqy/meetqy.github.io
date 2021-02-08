@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        padding: 0 100px 0 150px;
+        overflow: hidden;
+      }
+
+      .container > div {
+        float: left;
+        text-align: center;
+      }
+
+      .left {
+        width: 150px;
+        height: 50px;
+        background-color: lawngreen;
+        margin-left: -100%;
+        position: relative;
+        left: -150px;
+      }
+
+      .right {
+        width: 100px;
+        height: 50px;
+        background-color: rebeccapurple;
+        margin-right: -100px;
+      }
+
+      .center {
+        width: 100%;
+        height: 50px;
+        background-color: cadetblue;
+      }
+
+      .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .header,
+      .footer {
+        width: 100%;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header"></div>
+    <div class="container clearfix">
+      <div class="center">this is center</div>
+      <div class="left">this is left</div>
+      <div class="right">this is right</div>
+    </div>
+    <div class="footer"></div>
+  </body>
+</html>

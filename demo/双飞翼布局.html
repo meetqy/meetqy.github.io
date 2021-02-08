@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrap {
+        min-width: 550px;
+      }
+
+      #main {
+        width: 100%;
+        height: 200px;
+        background-color: blue;
+      }
+
+      #main-wrap {
+        margin: 0 200px;
+      }
+
+      #left {
+        width: 200px;
+        height: 200px;
+        background-color: rebeccapurple;
+        margin-left: -100%;
+      }
+
+      #right {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        margin-left: -200px;
+      }
+
+      #footer {
+        width: 100%;
+        height: 100px;
+        background-color: aqua;
+      }
+
+      .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .col {
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap clearfix">
+      <div id="main" class="col">
+        <div id="main-wrap">this is main</div>
+      </div>
+      <div id="left" class="col">
+        this is left
+      </div>
+      <div id="right" class="col">
+        this is right
+      </div>
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>
