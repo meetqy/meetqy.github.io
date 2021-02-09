@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function deepClone(obj = {}) {
+        if (typeof obj !== "object" || obj == null) {
+          return obj;
+        }
+
+        let result;
+
+        if (obj instanceof Array) {
+          result = [];
+        } else {
+          result = {};
+        }
+
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            result[key] = deepClone(obj[key]);
+          }
+        }
+
+        return result;
+      }
+
+      let obj1 = {
+        name: "sj",
+        age: 20,
+        arr: [1, 2, 3, 4, 5],
+        other: {
+          a: 1,
+          b: 2
+        },
+        fn: () => console.log(13)
+      };
+
+      let obj2 = deepClone(obj1);
+      console.log(obj2, "obj2");
+      obj2.other.a = 3;
+      obj2.name = "sh";
+      console.log(obj1, "obj1");
+
+      let obj3 = JSON.parse(JSON.stringify(obj1)); // 丢失function
+      console.log(obj3);
+    </script>
+  </body>
+</html>
