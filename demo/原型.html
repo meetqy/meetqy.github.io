@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+
+        speak() {
+          console.log(`我的名字：${this.name}, 今年：${this.age}`);
+        }
+      }
+
+      class Student extends Person {
+        constructor(name, age, num) {
+          super(name, age);
+
+          this.num = num;
+        }
+
+        speakNum() {
+          console.log(`学号：${this.num}`);
+        }
+      }
+
+      const p = new Person("jack", 20);
+      p.speak();
+
+      const stu1 = new Student("lisa", 19, 10001);
+      console.log(Student.prototype === stu1.__proto__); // true 指向同一块内存地址 引用类型
+      console.log(stu1);
+      stu1.speak();
+      stu1.speakNum();
+
+      for (let prop in stu1) {
+        console.log(`stu1.${prop}: ${stu1.hasOwnProperty(prop)}`);
+      }
+
+      console.log(stu1 instanceof Student); // true
+      console.log(stu1 instanceof Person); // true
+      console.log(stu1 instanceof Object); // true 所有对象都是Object构造的
+    </script>
+  </body>
+</html>
