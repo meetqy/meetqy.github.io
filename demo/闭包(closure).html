@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function fun(n, o) {
+      //     // 2.打印undefind n = 0, o = undefind
+      //     // 6.n = 1, o = 0; 打印 0;
+      //     console.log(o);
+      //     // 3.返回 {fun} 方法
+      //     // 7.返回 {fun}
+      //     return {
+      //       // 4.执行 fun(1) m = 1, n = 0;
+      //       // 8.执行 fun(2) m = 2, n = 1;
+      //       fun: function(m) {
+      //         // 5.执行 fun(1, 0)
+      //         // 9.执行 fun(2, 1);
+      //         return fun(m, n);
+      //       }
+      //     };
+      //   }
+
+      //   // 1.执行 fun(0)
+      //   var b = fun(0) // undefind
+      //     .fun(1) // 0
+      //     .fun(2) // 1
+      //     .fun(3); // 2
+
+      function fun(n, o) {
+        // 1. n = 1, o = 0; 打印 0;
+        // 3. 打印 1;
+        console.log(o);
+        return {
+          fun: function(m) {
+            // 2. m = 2, n = 1
+            // 4. m = 3, n = 1;
+            return fun(m, n);
+          }
+        };
+      }
+
+      var c = fun(0).fun(1); // undefind, 0
+      c.fun(2); // 打印 1
+      c.fun(3); // 打印 1
+
+      //   var a = fun(0); // n 0, o undefind => undefind
+      //   a.fun(1); // m 1, n 0 o 0 => 0
+      //   a.fun(2); // m 2, n 0 o 0 => 0
+      //   a.fun(3); // m 3, n 0 o 0 => 0
+
+      //   var c = fun(0).fun(1);
+      //   c.fun(2);
+      //   c.fun(3);
+    </script>
+  </body>
+</html>

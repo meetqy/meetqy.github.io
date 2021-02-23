@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function async1() {
+        console.log("async1 start"); // 2
+        await async2();
+        setTimeout(function() {
+          // 宏任务3
+          console.log("setTimeout1"); // 8
+        }, 0);
+      }
+      async function async2() {
+        setTimeout(function() {
+          // 宏任务2
+          console.log("setTimeout2"); // 7
+        }, 0);
+      }
+
+      console.log("script start"); // 1
+
+      setTimeout(function() {
+        // 宏任务1
+        console.log("setTimeout3"); // 6
+      }, 0);
+
+      async1();
+
+      new Promise(function(resolve) {
+        console.log("promise1"); // 3
+        resolve();
+      }).then(function() {
+        // 微任务
+        console.log("promise2"); // 5
+      });
+
+      console.log("script end"); // 4
+    </script>
+  </body>
+</html>
