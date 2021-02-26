@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      div {
+        width: 200px;
+        margin: 20px;
+        height: 200px;
+        background-color: red;
+        /* float: left; */
+      }
+      header {
+        width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    </style>
+    <header>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </header>
+
+    <script>
+      //   var a = 10;
+      //   (function() {
+      //     console.log(a); // 1. undefind
+      //     a = 5; // a = 5
+      //     console.log(window.a); // 10
+      //     var a = 20; // var a; 20
+      //     console.log(a); // 20
+      //   })();
+
+      //   function sleep(time) {
+      //     return new Promise((resolve, reject) => {
+      //       setTimeout(() => {
+      //         resolve();
+      //       }, time);
+      //     });
+      //   }
+
+      //   (async function() {
+      //     console.log(1);
+      //     await sleep(2000);
+      //     console.log(2);
+      //   })();
+
+      function Foo() {
+        Foo.a = function() {
+          console.log(1);
+        };
+        this.a = function() {
+          console.log(2);
+        };
+      }
+      Foo.prototype.a = function() {
+        console.log(3);
+      };
+      Foo.a = function() {
+        console.log(4);
+      };
+      Foo.a(); // 4
+      let obj = new Foo();
+      obj.a(); // 2
+      Foo.a(); // 1
+    </script>
+  </body>
+</html>

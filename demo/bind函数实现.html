@@ -12,16 +12,45 @@
       const S = {
         name: "张三",
         age: 20,
-        getName() {
-          console.log(this.name);
+        getName(ext = "", a = "") {
+          console.log(`${this.name}; ext: ${ext}; a: ${a}`);
         }
       };
 
-      S.getName.mybind(this)();
-
       Function.prototype.mybind = function() {
-        let _this = arguments[0];
+        if (typeof this !== "function") {
+          throw new Error("not function");
+        }
+
+        const args = [].slice.call(arguments, 1); // 除了第一个参数以外的所有参数
+        const _ = arguments[0]; // 通过参数传入的this
+        const self = this; // 函数本身
+
+        return function() {
+          return self.apply(_, args);
+        };
       };
+
+      Function.prototype.myapply = function(_, arr) {
+        if (typeof this !== "function") {
+          throw new Error("not function");
+        }
+
+        let context = _ || window;
+        context.fn = this;
+        let res;
+        res = arr ? context.fn(...arr) : context.fn();
+
+        delete context.fn;
+
+        return res;
+      };
+
+      // S.getName.myapply(this, ["2999asda", 23]);
+
+      // let fn = S.getName.mybind(this, "123");
+      // console.log(fn);
+      // fn();
     </script>
   </body>
 </html>
