@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+    <div style="width: 100%;height: 10000px"></div>
+    <script>
+      const input = document.getElementById("input");
+
+      function debounce(fn, delay = 300) {
+        let timer;
+        return function() {
+          if (timer) {
+            clearTimeout(timer);
+          }
+
+          timer = setTimeout(() => {
+            fn.apply(this, arguments);
+            clearTimeout(timer);
+          }, delay);
+        };
+      }
+
+      input.addEventListener(
+        "keyup",
+        debounce(function(e) {
+          console.log(e);
+        })
+      );
+
+      // throttle 节流
+
+      function throttle(fn, delay = 1000) {
+        let timer;
+        return function() {
+          if (!timer) {
+            timer = setTimeout(() => {
+              fn.apply(this, arguments);
+
+              timer = null;
+            }, delay);
+          }
+        };
+      }
+
+      document.body.onscroll = throttle(e => {
+        console.log(e);
+      });
+    </script>
+  </body>
+</html>

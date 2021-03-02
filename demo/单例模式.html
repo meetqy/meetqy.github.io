@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Sys {
+        login() {
+          console.log("登录");
+        }
+
+        register() {
+          console.log("注册");
+        }
+      }
+
+      const getSys = (function() {
+        let instance;
+
+        return function() {
+          if (!instance) {
+            instance = new Sys();
+          }
+
+          return instance;
+        };
+      })();
+
+      const s1 = getSys();
+      const s2 = getSys();
+      console.log(s1 === s2); // true
+
+      const s3 = new Sys();
+      console.log(s1 === s3); // false
+
+      // 解决 在调用时使用 new Sys() 产生不同实例
+      // 使用模块化时，只导出 getSys方法
+      //   export default getSys;
+    </script>
+  </body>
+</html>
